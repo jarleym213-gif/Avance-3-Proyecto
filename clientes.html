@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Clientes</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/estilos.css">
+</head>
+
+<body>
+    <header class="custom-header">
+
+    <div class="header-container">
+
+        <div class="logo-area">
+            <img src="images/logo.png" alt="Logo Tienda Tech JAR" class="logo">
+            <h1>Clientes</h1>
+        </div>
+
+        <div class="user-box">
+            <i class="fas fa-user-circle"></i>
+            <span id="usuarioLogueado"></span>
+        </div>
+
+    </div>
+
+</header>
+    <nav class="nav-menu">
+        <ul class="nav-list">
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="productos.html">Productos</a></li>
+            <li id="menuClientes" style="display:none;"><a href="clientes.html">Clientes</a></li>
+            <li id="menuEmpleados" style="display:none;"><a href="empleados.html">Empleados</a></li>
+            <li><a href="contacto.html">Contacto</a></li>
+            <li style="position: relative;">
+                <a href="carrito.html" id="iconoCarrito">
+                     Carrito
+                    <span id="contadorCarrito" class="badge">0</span>
+                </a>
+            </li>
+            <li><a href="#" onclick="logout()">Cerrar Sesión</a></li>
+        </ul>
+    </nav>
+    <main class="container mt-4">
+        <h2 id="tituloForm">Agregar Cliente</h2>
+        <input type="hidden" id="txtId">
+        <div class="row g-2 mb-4">
+            <div class="col-md-4">
+                <input type="text" id="txtNombre" class="form-control" placeholder="Nombre">
+            </div>
+            <div class="col-md-4">
+                <input type="email" id="txtCorreo" class="form-control" placeholder="Correo">
+            </div>
+            <div class="col-md-2">
+                <input type="text" id="txtTelefono" class="form-control" placeholder="Teléfono">
+            </div>
+            <div class="col-md-2">
+                <input type="password" id="txtPassword" class="form-control" placeholder="Contraseña">
+            </div>
+            
+            <div class="col-md-2">
+                <button id="btnAdd" class="btn btn-success w-10">
+                    Guardar
+                </button>
+                <button id="btnCancel" class="btn btn-success" type="button">Cancelar</button>
+            </div>
+        </div>
+
+        <h2>Lista de Clientes</h2>
+        <button id="btnLoad" class="btn btn-primary mb-3">
+            Cargar Clientes
+        </button>
+
+        <table class="table table-striped table-bordered">
+            <thead class="table-dark">
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Correo</th>
+                    <th>Teléfono</th>
+                    <th>Fecha de Creación</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody id="tbodyClientes">
+            </tbody>
+        </table>
+    </main>
+
+    <footer class="text-center p-3">
+        <p>&copy; 2026 Tienda de accesorios de PC</p>
+        <p>Contacto: <a href="mailto:jarley@gmail.com">Jarley</a></p>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+     <script type="module" src="js/carrito-utils.js"></script>
+    <script src="js/clientes.js" type="module"></script>
+        <script type="module" src="js/auth.js"></script>
+
+
+</body>
+
+</html>

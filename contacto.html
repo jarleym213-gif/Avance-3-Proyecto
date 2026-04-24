@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Contacto</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="css/estilos.css">
+</head>
+
+<body>
+
+    <header class="custom-header">
+
+    <div class="header-container">
+
+        <div class="logo-area">
+            <img src="images/logo.png" alt="Logo Tienda Tech JAR" class="logo">
+            <h1>Contacto</h1>
+        </div>
+
+        <div class="user-box">
+            <i class="fas fa-user-circle"></i>
+            <span id="usuarioLogueado"></span>
+        </div>
+
+    </div>
+
+</header>
+
+    <nav class="nav-menu">
+        <ul class="nav-list">
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="productos.html">Productos</a></li>
+            <li id="menuClientes"><a href="clientes.html">Clientes</a></li>
+            <li id="menuClientes" style="display:none;"><a href="clientes.html">Clientes</a></li>
+            <li id="menuEmpleados" style="display:none;"><a href="empleados.html">Empleados</a></li>
+            <li><a href="#" onclick="logout()">Cerrar Sesión</a></li>
+        </ul>
+    </nav>
+    <main class="container mt-4">
+        <section class="col-md-6 mx-auto">
+
+            <h2 class="mb-4 text-center">Envíanos un mensaje</h2>
+
+            <form id="formContacto">
+
+                <div class="mb-3">
+                    <label class="form-label">Nombre</label>
+                    <input type="text" id="nombre" class="form-control" required>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Correo</label>
+                    <input type="email" id="correo" class="form-control" required>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Asunto</label>
+                    <input type="text" id="asunto" class="form-control" required>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Mensaje</label>
+                    <textarea id="mensaje" class="form-control" rows="4" required></textarea>
+                </div>
+
+                <button type="submit" class="btn btn-success w-100">
+                    Enviar
+                </button>
+
+            </form>
+
+            <div class="inside">
+
+                <div class="Mensaje">
+                    <h2>¿No encuentras lo que buscas?</h2>
+                </div>
+
+                <div class="mensaje_card">
+                    <section class="mt-5">
+                <h3 class="text-center mb-4">Contáctanos</h3>
+
+                <div class="row">
+
+                    <!-- WhatsApp -->
+                    <div class="col-md-15 mb-3">
+                        <div class="p-3 border rounded">
+                            <h5><i class="bi bi-whatsapp"></i> WhatsApp</h5>
+                            <p>(+506 8627-1111)</p>
+                            <a href="https://wa.me/50686272170" target="_blank">Escríbenos por WhatsApp</a>
+                            <p>Lunes a viernes: 7:00 a.m. – 9:00 p.m.</p>
+                            <p>Sábados y domingos: 7:00 a.m. – 3:00 p.m.</p>
+                        </div>
+                    </div>
+
+                    <!-- Correo -->
+                    <div class="col-md-15 mb-3">
+                        <div class="p-3 border rounded">
+                            <h5><i class="bi bi-envelope-fill"></i> Correo</h5>
+                            <p>tech_cr_uc@gmail.com</p>
+                            <p>Lunes a viernes: 7:00 a.m. – 9:00 p.m.</p>
+                            <p>Sábados y domingos: 7:00 a.m. – 3:00 p.m.</p>
+                        </div>
+                    </div>
+
+                    <!-- Teléfono -->
+                    <div class="col-md-15 mb-3">
+                        <div class="p-3 border rounded">
+                            <h5><i class="bi bi-telephone-fill"></i> 800 Soporte</h5>
+                            <p>800-11111111</p>
+                            <p>Disponible 24 horas</p>
+                        </div>
+                    </div>
+
+                    <!-- Formulario -->
+                    <div class="col-md-15 mb-3">
+                        <div class="p-3 border rounded">
+                            <h5><i class="bi bi-pencil-square"></i> Formulario</h5>
+                            <p>Sugerencias o comentarios</p>
+                            <a href="#" class="btn btn-primary btn-sm">Clic aquí</a>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+                </div>
+
+            </div>
+
+            
+            <!-- Redes sociales -->
+            <div class="text-center mt-4">
+                <h5><i class="bi bi-globe"></i> Redes Sociales</h5>
+                <a href="#" class="me-2"><i class="bi bi-facebook"></i> Facebook</a>
+                <a href="#" class="me-2"><i class="bi bi-instagram"></i> Instagram</a>
+                <a href="#"><i class="bi bi-twitter-x"></i> Twitter</a>
+            </div>
+
+        </section>
+
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2026 Tienda de accesorios de PC</p>
+        <p>Contacto: <a href="mailto:jarley@gmail.com">Jarley</a></p>
+            <script type="module" src="js/auth.js"></script>
+
+        <script type="module" src="js/apps.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script src="js/formulario.js"></script>
+    </footer>
+</body>
+
+</html>

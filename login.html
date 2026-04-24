@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Login - Tienda JAR</title>
+    <link rel="stylesheet" href="css/estilos.css">
+</head>
+
+<body class="login-body">
+    <div class="login-box">
+        <img src="images/logo.png" alt="Logo Tienda Tech JAR" class="logo"
+            style="width:120px; height:auto; margin-bottom:1px;">
+        <h2>Iniciar Sesión</h2>
+        <input type="email" id="correo" placeholder="Correo" class="login-input">
+        <input type="password" id="password" placeholder="Contraseña" class="login-input">
+        <button id="btnLogin" class="login-btn">Ingresar</button>
+        <p>Si no tienes una cuenta, presiona el botón de registrarse.</p>
+        <button onclick="window.location.href='register.html'" class="login-btn2">
+            Registrarse
+        </button>
+    </div>
+    <script src="js/login.js" type="module"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</body>
+
+</html>

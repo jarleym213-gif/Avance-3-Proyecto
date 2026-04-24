@@ -1,0 +1,114 @@
+classDiagram
+direction LR
+
+%% Auth supabase
+class AuthUser {
+  <<external>>
+  uuid id
+  string email
+  string password
+}
+
+note for AuthUser "Gestión de autenticación manejada por Supabase (auth.users)"
+
+%% USUARIOS
+class Usuario {
+  +uuid id
+  +string correo
+  +string rol
+}
+
+AuthUser "1" --> "1" Usuario : genera/perfil
+
+note for Usuario "Tabla espejo de auth.users para roles del sistema"
+
+%% CLIENTES
+class Cliente {
+  +int id
+  +uuid usuario_id
+  +string nombre
+  +string telefono
+  +timestamp fecha_creacion
+}
+
+AuthUser "1" --> "0..1" Cliente : puede ser
+
+note for Cliente "Usuario externo (comprador)"
+
+%% EMPLEADOS
+class Empleado {
+  +int id
+  +uuid usuario_id
+  +string nombre
+  +string cargo
+  +string correo
+  +timestamp fecha_creacion
+}
+
+Usuario "1" --> "0..1" Empleado : es
+
+note for Empleado "Personal interno del sistema"
+
+%% CATEGORIAS Y PRODUCTOS
+class Categoria {
+  +int id
+  +string nombre
+  +string descripcion
+  +bool activo
+}
+
+class Producto {
+  +int id
+  +string nombre
+  +string marca
+  +decimal precio
+  +int stock
+  +bool activo
+  +string descripcion
+}
+
+Categoria "1" --> "0..*" Producto : clasifica
+
+%% CARRO Y DETALLE DE CARRO
+class Carrito {
+  +int id
+  +uuid usuario_id
+}
+
+class DetalleCarrito {
+  +int id
+  +int carrito_id
+  +int producto_id
+  +int cantidad
+  +decimal precio
+}
+
+Usuario "1" --> "0..*" Carrito : tiene
+Carrito "1" --> "1..*" DetalleCarrito : contiene
+Producto "1" --> "0..*" DetalleCarrito : agregado
+
+note for Carrito "Entidad temporal de compra"
+
+%% VENTAS Y DETALLE DE VENTA
+class Venta {
+  +int id
+  +uuid usuario_id
+  +int cliente_id
+  +timestamp fecha
+  +decimal total
+}
+
+class DetalleVenta {
+  +int id
+  +int venta_id
+  +int producto_id
+  +int cantidad
+  +decimal precio
+}
+
+Usuario "1" --> "0..*" Venta : registra
+Cliente "1" --> "0..*" Venta : compra
+Venta "1" --> "1..*" DetalleVenta : contiene
+Producto "1" --> "0..*" DetalleVenta : vendido
+
+note for Venta "Transacción de compra final"

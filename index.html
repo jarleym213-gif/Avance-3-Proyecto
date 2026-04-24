@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Tienda virtual JAR</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/estilos.css">
+</head>
+
+<body>
+
+    <header class="custom-header">
+
+    <div class="header-container">
+
+        <!-- IZQUIERDA -->
+        <div class="logo-area">
+            <img src="images/logo.png" alt="Logo Tienda Tech JAR" class="logo">
+            <h1>Tienda Tech JAR</h1>
+        </div>
+
+        <!-- DERECHA -->
+        <div class="user-box">
+            <i class="fas fa-user-circle"></i>
+            <span id="usuarioLogueado"></span>
+        </div>
+
+    </div>
+
+</header>
+
+
+
+    <nav class="nav-menu">
+        <ul class="nav-list">
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="productos.html">Productos</a></li>
+            <li id="menuClientes" style="display:none;"><a href="clientes.html">Clientes</a></li>
+            <li id="menuEmpleados" style="display:none;"><a href="empleados.html">Empleados</a></li>
+            <li style="position: relative;">
+                <a href="carrito.html" id="iconoCarrito">
+                     Carrito
+                    <span id="contadorCarrito" class="badge">0</span>
+                </a>
+            </li>
+            <li><a href="contacto.html">Contacto</a></li>
+            <li><a href="#" onclick="logout()">Cerrar Sesión</a></li>
+        </ul>
+    </nav>
+
+    <main class="container mt-4">
+
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Bienvenido a tu Tienda Tech JAR</h1>
+                <p>Los mejores accesorios de PC al mejor precio</p>
+                <a href="productos.html" class="btn btn-primary btn-lg mt-3">
+                    Comprar ahora
+                </a>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2026 Tienda de accesorios de PC</p>
+        <p>Contacto: <a href="mailto:jarley@gmail.com">Jarley</a></p>
+
+    </footer>
+
+    <script type="module" src="js/apps.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script type="module" src="js/auth.js"></script>
+</body>
+
+</html>
