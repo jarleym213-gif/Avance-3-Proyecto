@@ -15,23 +15,23 @@
 
     <header class="custom-header">
 
-    <div class="header-container">
+        <div class="header-container">
 
-        <!-- IZQUIERDA -->
-        <div class="logo-area">
-            <img src="images/logo.png" alt="Logo Tienda Tech JAR" class="logo">
-            <h1>Tienda Tech JAR</h1>
+            <!-- IZQUIERDA -->
+            <div class="logo-area">
+                <img src="images/logo.png" alt="Logo Tienda Tech JAR" class="logo">
+                <h1>Tienda Tech JAR</h1>
+            </div>
+
+            <!-- DERECHA -->
+            <div class="user-box">
+                <i class="fas fa-user-circle"></i>
+                <span id="usuarioLogueado"></span>
+            </div>
+
         </div>
 
-        <!-- DERECHA -->
-        <div class="user-box">
-            <i class="fas fa-user-circle"></i>
-            <span id="usuarioLogueado"></span>
-        </div>
-
-    </div>
-
-</header>
+    </header>
 
 
 
@@ -43,12 +43,15 @@
             <li id="menuEmpleados" style="display:none;"><a href="empleados.html">Empleados</a></li>
             <li style="position: relative;">
                 <a href="carrito.html" id="iconoCarrito">
-                     Carrito
+                    Carrito
                     <span id="contadorCarrito" class="badge">0</span>
                 </a>
             </li>
             <li><a href="contacto.html">Contacto</a></li>
             <li><a href="#" onclick="logout()">Cerrar Sesión</a></li>
+            <li id="menuVentas" style="display:none;">
+                <a href="ventas.html">Ventas</a>
+            </li>
         </ul>
     </nav>
 

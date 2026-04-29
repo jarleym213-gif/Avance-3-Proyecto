@@ -41,13 +41,20 @@ export const loadUser = async () => {
 const applyMenuByRole = (rol) => {
   const menuClientes = document.getElementById("menuClientes");
   const menuEmpleados = document.getElementById("menuEmpleados");
+  const menuVentas = document.getElementById("menuVentas");
 
-  if (rol === "comprador") {
-    menuClientes?.style && (menuClientes.style.display = "none");
-    menuEmpleados?.style && (menuEmpleados.style.display = "none");
-  } else {
-    menuClientes?.style && (menuClientes.style.display = "block");
-    menuEmpleados?.style && (menuEmpleados.style.display = "block");
+   if (rol === "comprador") {
+    menuClientes.style.display = "none";
+    menuEmpleados.style.display = "none";
+    menuVentas.style.display = "none";
+  } else if (rol === "vendedor") {
+    menuClientes.style.display = "block";
+    menuEmpleados.style.display = "block";
+    menuVentas.style.display = "none"; 
+  } else if (rol === "admin") {
+    menuClientes.style.display = "block";
+    menuEmpleados.style.display = "block";
+    menuVentas.style.display = "block"; 
   }
 };
 
