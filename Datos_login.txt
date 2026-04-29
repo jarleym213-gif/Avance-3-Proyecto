@@ -1,11 +1,11 @@
 admin@gmail.com
-12345
-Acceso total con todos los botones habilitados
-
-carlos@gmail.com
 123456
-Deshabilité los botones de editar y eliminar
+Rol admnistrador. Acceso total con todos los botones habilitados
+
+laura@tienda.com
+123456
+Rol de vendedor. Deshabilité los botones de editar y eliminar
 
 comprador@gmail.com
 123456
-Deshabilité del menú (clientes y empleados), y los botones de editar agregar y eliminar productos.
+Rol de comprador. Deshabilité del menú (clientes y empleados), y los botones de editar agregar y eliminar productos.
