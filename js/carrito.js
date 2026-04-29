@@ -41,7 +41,7 @@ const obtenerRol = async () => {
     .from("usuarios")
     .select("rol")
     .eq("correo", usuarioActual.email)
-    .single();
+    .maybeSingle();
 
   if (error) {
     console.error(error);
@@ -145,6 +145,7 @@ const eliminarProducto = async (id) => {
   }
 
   cargarCarrito();
+  await actualizarContadorCarrito();
 };
 
 // OBTENER CLIENTE SELECCIONADO O MOSTRAR AUTOMÁTICO
@@ -303,6 +304,7 @@ const finalizarCompra = async () => {
   await limpiarCarrito();
 
   cargarCarrito();
+  await actualizarContadorCarrito();
 };
 
 // CONFIGURAR VISTA POR ROL

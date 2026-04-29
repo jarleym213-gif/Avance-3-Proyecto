@@ -29,7 +29,7 @@ export const loadUser = async () => {
       .from("usuarios")
       .select("rol")
       .eq("correo", currentUser.email)
-      .single();
+      .maybeSingle();
 
     currentRole = perfil?.rol || "comprador";
 

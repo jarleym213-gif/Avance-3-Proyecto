@@ -26,7 +26,7 @@ const login = async () => {
     return;
   }
 
-  //  USAR EMAIL REAL DEL USUARIO AUTENTICADO
+  //  email de spabase 
   const emailReal = data.user.email;
 
   //  OBTENER ROL
@@ -42,7 +42,7 @@ const login = async () => {
     return;
   }
 
-  const rol = usuarioDB?.rol || "vendedor";
+  const rol = usuarioDB?.rol || "comprador";
 
   //  GUARDAR USUARIO COMPLETO
   const usuarioCompleto = {

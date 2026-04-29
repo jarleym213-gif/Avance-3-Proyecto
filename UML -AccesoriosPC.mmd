@@ -31,9 +31,9 @@ class Cliente {
   +timestamp fecha_creacion
 }
 
-AuthUser "1" --> "0..1" Cliente : puede ser
+Usuario "1" --> "0..1" Cliente : es
 
-note for Cliente "Usuario externo (comprador)"
+note for Cliente "Usuario comprador del sistema"
 
 %% EMPLEADOS
 class Empleado {
@@ -41,13 +41,12 @@ class Empleado {
   +uuid usuario_id
   +string nombre
   +string cargo
-  +string correo
   +timestamp fecha_creacion
 }
 
 Usuario "1" --> "0..1" Empleado : es
 
-note for Empleado "Personal interno del sistema"
+note for Empleado "Personal interno (admin o vendedor)"
 
 %% CATEGORIAS Y PRODUCTOS
 class Categoria {
@@ -69,25 +68,20 @@ class Producto {
 
 Categoria "1" --> "0..*" Producto : clasifica
 
-%% CARRO Y DETALLE DE CARRO
+%% CARRITO (modelo real usado en el código)
 class Carrito {
   +int id
+  +int producto_id
+  +string nombre
+  +decimal precio
+  +int cantidad
   +uuid usuario_id
 }
 
-class DetalleCarrito {
-  +int id
-  +int carrito_id
-  +int producto_id
-  +int cantidad
-  +decimal precio
-}
-
 Usuario "1" --> "0..*" Carrito : tiene
-Carrito "1" --> "1..*" DetalleCarrito : contiene
-Producto "1" --> "0..*" DetalleCarrito : agregado
+Producto "1" --> "0..*" Carrito : agregado
 
-note for Carrito "Entidad temporal de compra"
+note for Carrito "Carrito implementado como lista directa por usuario"
 
 %% VENTAS Y DETALLE DE VENTA
 class Venta {
@@ -111,4 +105,4 @@ Cliente "1" --> "0..*" Venta : compra
 Venta "1" --> "1..*" DetalleVenta : contiene
 Producto "1" --> "0..*" DetalleVenta : vendido
 
-note for Venta "Transacción de compra final"
+note for Venta "Transacción final de compra"

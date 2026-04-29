@@ -280,6 +280,7 @@ tbody?.addEventListener("click", async (e) => {
     txtNombre.value = data.nombre;
     txtCorreo.value = data.correo;
     txtRol.value = data.cargo;
+    txtCorreo.disabled = true;
 
     btnAdd.textContent = "Actualizar";
     tituloForm.textContent = "Editar Empleado";

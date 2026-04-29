@@ -56,7 +56,7 @@ const consultarClientes = async () => {
 
   const { data, error } = await supabase
     .from("clientes")
-    .select("id,nombre,correo,telefono,fecha_creacion")
+    .select("id,nombre,correo,telefono,fecha_creacion,usuario_id")
     .order("id", { ascending: true });
 
   if (error) {
@@ -98,13 +98,6 @@ const renderClientes = (data) => {
 // GUARDAR CLIENTE
 const guardarCliente = async () => {
 
-  const password = txtPassword.value.trim();
-
-  if (!password) {
-    Swal.fire("Debe ingresar contraseña");
-    return;
-  }
-
   const cliente = {
     nombre: txtNombre.value.trim(),
     correo: txtCorreo.value.trim(),
@@ -113,6 +106,66 @@ const guardarCliente = async () => {
 
   if (!cliente.nombre || !cliente.correo || !cliente.telefono) {
     Swal.fire("Complete todos los campos");
+    return;
+  }
+
+  //Editar cliente
+  if (txtId.value) {
+
+    const { data: clienteActual } = await supabase
+      .from("clientes")
+      .select("usuario_id")
+      .eq("id", txtId.value)
+      .maybeSingle();
+
+    // validar duplicado excluyendo el mismo usuario
+    const { data: existe } = await supabase
+      .from("usuarios")
+      .select("*")
+      .eq("correo", cliente.correo)
+      .neq("id", clienteActual.usuario_id)
+      .maybeSingle();
+
+    if (existe) {
+      Swal.fire("El correo ya está registrado");
+      return;
+    }
+
+    // actualizar cliente
+    const { error } = await supabase
+      .from("clientes")
+      .update({
+        nombre: cliente.nombre,
+        correo: cliente.correo,
+        telefono: cliente.telefono
+      })
+      .eq("id", txtId.value);
+
+    if (error) {
+      console.error(error);
+      Swal.fire("Error actualizando cliente");
+      return;
+    }
+
+    // actualizar usuario (correo)
+    await supabase
+      .from("usuarios")
+      .update({ correo: cliente.correo })
+      .eq("id", clienteActual.usuario_id);
+
+    Swal.fire("Cliente actualizado correctamente");
+
+    limpiarFormulario();
+    consultarClientes();
+    return;
+  }
+
+  // CREAR NUEVO CLIENTE
+
+  const password = txtPassword.value.trim();
+
+  if (!password) {
+    Swal.fire("Debe ingresar contraseña");
     return;
   }
 
@@ -128,11 +181,11 @@ const guardarCliente = async () => {
     return;
   }
 
-  // 1. guardar sesión actual
+  // guardar sesión actual
   const { data: sessionData } = await supabase.auth.getSession();
   const sessionActual = sessionData.session;
 
-  // 2. crear usuario en auth
+  // crear usuario en auth
   const { data: authData, error: errorAuth } =
     await supabase.auth.signUp({
       email: cliente.correo,
@@ -147,12 +200,12 @@ const guardarCliente = async () => {
 
   const userId = authData.user.id;
 
-  // 3. restaurar sesión admin
+  // restaurar sesión admin
   if (sessionActual) {
     await supabase.auth.setSession(sessionActual);
   }
 
-  // 4. insertar en usuarios
+  // insertar en usuarios
   const { error: errorUsuario } = await supabase
     .from("usuarios")
     .insert([{
@@ -167,7 +220,7 @@ const guardarCliente = async () => {
     return;
   }
 
-  // 5. insertar en clientes
+  // insertar en clientes
   const { error } = await supabase
     .from("clientes")
     .insert([{
@@ -228,7 +281,7 @@ const obtenerClientePorId = async (id) => {
     .from("clientes")
     .select("*")
     .eq("id", id)
-    .single();
+    .maybeSingle();
 
   if (error) {
     console.error(error);
@@ -276,6 +329,7 @@ tbody?.addEventListener("click", async (event) => {
     txtNombre.value = cliente.nombre;
     txtCorreo.value = cliente.correo;
     txtTelefono.value = cliente.telefono;
+    txtCorreo.disabled = true;
 
     btnAdd.textContent = "Actualizar";
     tituloForm.textContent = "Editar Cliente";
