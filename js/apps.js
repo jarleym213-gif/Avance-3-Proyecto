@@ -14,7 +14,8 @@ const txtPrecio = document.getElementById("txtPrecio");
 const txtStock = document.getElementById("txtStock");
 const tituloForm = document.getElementById("tituloForm");
 const txtDescripcion = document.getElementById("txtDescripcion");
-
+const tablaProductos = document.getElementById("tablaProductos");
+tablaProductos.style.display = "none";
 // VARIABLES GLOBALES
 let rolUsuario = "";
 let cantidades = {};

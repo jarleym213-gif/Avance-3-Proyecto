@@ -57,15 +57,60 @@
 
     <main class="container mt-4">
 
-        <section class="hero">
-            <div class="hero-content">
-                <h1>Bienvenido a tu Tienda Tech JAR</h1>
-                <p>Los mejores accesorios de PC al mejor precio</p>
-                <a href="productos.html" class="btn btn-primary btn-lg mt-3">
-                    Comprar ahora
-                </a>
+        <div id="carouselHero" class="carousel slide" data-bs-ride="carousel">
+
+    <!-- INDICADORES -->
+    <div class="carousel-indicators">
+        <button type="button" data-bs-target="#carouselHero" data-bs-slide-to="0" class="active"></button>
+        <button type="button" data-bs-target="#carouselHero" data-bs-slide-to="1"></button>
+        <button type="button" data-bs-target="#carouselHero" data-bs-slide-to="2"></button>
+    </div>
+
+    <!-- SLIDES -->
+    <div class="carousel-inner">
+
+        <!-- SLIDE 1 -->
+        <div class="carousel-item active">
+            <img src="images/slide1.jpg" class="d-block w-100" style="height:500px; object-fit:cover;">
+            <div class="carousel-caption">
+                <h2>Bienvenido a Tienda Tech JAR</h2>
+                <p>Los mejores accesorios de PC</p>
+                <a href="productos.html" class="btn btn-primary">Comprar ahora</a>
             </div>
-        </section>
+        </div>
+
+        <!-- SLIDE 2 -->
+        <div class="carousel-item">
+            <img src="images/slide2.jpg" class="d-block w-100" style="height:500px; object-fit:cover;">
+            <div class="carousel-caption">
+                <h2>Ofertas especiales</h2>
+                <p>Precios increíbles todos los días</p>
+                <a href="productos.html" class="btn btn-primary">Comprar ahora</a>
+            </div>
+        </div>
+
+        <!-- SLIDE 3 -->
+        <div class="carousel-item">
+            <img src="images/slide3.jpg" class="d-block w-100" style="height:500px; object-fit:cover;">
+            <div class="carousel-caption">
+                <h2>Compra fácil y rápida</h2>
+                <p>Agrega al carrito y listo</p>
+                <a href="productos.html" class="btn btn-primary">Comprar ahora</a>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- CONTROLES -->
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselHero" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon"></span>
+    </button>
+
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselHero" data-bs-slide="next">
+        <span class="carousel-control-next-icon"></span>
+    </button>
+
+</div>
     </main>
     <footer>
         <p>&copy; 2026 Tienda de accesorios de PC</p>
@@ -76,6 +121,7 @@
     <script type="module" src="js/apps.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script type="module" src="js/auth.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>
