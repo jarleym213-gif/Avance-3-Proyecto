@@ -275,7 +275,7 @@ const finalizarCompra = async () => {
     `;
   });
 
-  const fecha = new Date(venta.fecha).toLocaleString();
+  const fecha = new Date(venta.fecha).toLocaleString("es-CR", { timeZone: "America/Costa_Rica" });
   // MOSTRAR RESUMEN DE LA VENTA ANTES DE LIMPIAR EL CARRITO
   await Swal.fire({
   title: "Factura de Compra",

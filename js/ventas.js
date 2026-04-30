@@ -7,6 +7,11 @@ document.addEventListener("DOMContentLoaded", () => {
   modal = new bootstrap.Modal(document.getElementById("modalDetalle"));
 });
 
+//Variables globales
+let ventasGlobal = [];
+let paginaActual = 1;
+const filasPorPagina = 10;
+
 // Cargar ventas al iniciar
 window.onload = async () => {
   const { data, error } = await supabase
@@ -25,21 +30,29 @@ window.onload = async () => {
     return;
   }
 
-  renderVentas(data);
+  ventasGlobal = data;
+renderVentasPaginadas();
+renderPaginacion();
 };
 
 //Renderizar ventas
-const renderVentas = (data) => {
+const renderVentasPaginadas = () => {
+
   tbody.innerHTML = "";
 
-  data.forEach(v => {
+  const inicio = (paginaActual - 1) * filasPorPagina;
+  const fin = inicio + filasPorPagina;
+
+  const paginaData = ventasGlobal.slice(inicio, fin);
+
+  paginaData.forEach(v => {
     const tr = document.createElement("tr");
 
     tr.innerHTML = `
       <td>${v.id}</td>
       <td>${v.clientes?.nombre || "-"}</td>
       <td>${v.usuarios?.correo || "-"}</td>
-      <td>${new Date(v.fecha).toLocaleString()}</td>
+      <td>${new Date(v.fecha).toLocaleString("es-CR", { timeZone: "America/Costa_Rica" })}</td>
       <td>₡${v.total}</td>
       <td>
         <button class="btn btn-primary btn-sm btnDetalle" data-id="${v.id}">
@@ -51,6 +64,32 @@ const renderVentas = (data) => {
     tbody.appendChild(tr);
   });
 };
+
+//generar botones de paginacion
+const renderPaginacion = () => {
+
+  const contenedor = document.getElementById("paginacion");
+  contenedor.innerHTML = "";
+
+  const totalPaginas = Math.ceil(ventasGlobal.length / filasPorPagina);
+
+  for (let i = 1; i <= totalPaginas; i++) {
+    const btn = document.createElement("button");
+
+    btn.textContent = i;
+    btn.className = "btn btn-sm " + (i === paginaActual ? "btn-primary" : "btn-outline-primary");
+
+    btn.addEventListener("click", () => {
+      paginaActual = i;
+      renderVentasPaginadas();
+      renderPaginacion();
+    });
+
+    contenedor.appendChild(btn);
+  }
+};
+
+
 
 // Evento para mostrar detalle de venta
 document.addEventListener("click", async (e) => {
@@ -102,7 +141,7 @@ const renderDetalle = (venta, detalle) => {
     <p><strong>Venta #:</strong> ${venta.id}</p>
     <p><strong>Cliente:</strong> ${venta.clientes?.nombre}</p>
     <p><strong>Vendedor:</strong> ${venta.usuarios?.correo}</p>
-    <p><strong>Fecha:</strong> ${new Date(venta.fecha).toLocaleString()}</p>
+    <p><strong>Fecha:</strong> ${new Date(venta.fecha).toLocaleString("es-CR", { timeZone: "America/Costa_Rica" })}</p>
     <hr>
   `;
 
