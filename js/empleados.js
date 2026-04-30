@@ -81,7 +81,12 @@ const renderEmpleados = (data) => {
       <td>${e.nombre}</td>
       <td>${e.correo}</td>
       <td>${e.cargo}</td>
-      <td>${new Date(e.fecha_creacion).toLocaleDateString("es-CR", { timeZone: "America/Costa_Rica" })}</td>
+      <td>${new Date(e.fecha_creacion).toLocaleString("es-CR", {
+  timeZone: "America/Costa_Rica",
+  year: "numeric",
+  month: "2-digit",
+  day: "2-digit"
+})}</td>
       <td>${botonesAdmin}</td>
     `;
 

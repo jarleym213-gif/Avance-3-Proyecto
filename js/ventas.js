@@ -141,7 +141,12 @@ const renderDetalle = (venta, detalle) => {
     <p><strong>Venta #:</strong> ${venta.id}</p>
     <p><strong>Cliente:</strong> ${venta.clientes?.nombre}</p>
     <p><strong>Vendedor:</strong> ${venta.usuarios?.correo}</p>
-    <p><strong>Fecha:</strong> ${new Date(venta.fecha).toLocaleString("es-CR", { timeZone: "America/Costa_Rica" })}</p>
+    <p><strong>Fecha:</strong> ${new Date(venta.fecha).toLocaleString("es-CR", {
+  timeZone: "America/Costa_Rica",
+  year: "numeric",
+  month: "2-digit",
+  day: "2-digit"
+})}</p>
     <hr>
   `;
 

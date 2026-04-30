@@ -178,7 +178,8 @@ const crearVenta = async (clienteId, total) => {
     .insert([{
       usuario_id: usuarioActual.id,
       cliente_id: clienteId,
-      total: total
+      total: total,
+      fecha: new Date().toISOString()
     }])
     .select()
     .single();
@@ -275,7 +276,14 @@ const finalizarCompra = async () => {
     `;
   });
 
-  const fecha = new Date(venta.fecha).toLocaleString("es-CR", { timeZone: "America/Costa_Rica" });
+  const fecha = new Date(venta.fecha).toLocaleString("es-CR", {
+  timeZone: "America/Costa_Rica",
+  year: "numeric",
+  month: "2-digit",
+  day: "2-digit",
+  hour: "2-digit",
+  minute: "2-digit"
+});
   // MOSTRAR RESUMEN DE LA VENTA ANTES DE LIMPIAR EL CARRITO
   await Swal.fire({
   title: "Factura de Compra",

@@ -87,7 +87,13 @@ const renderClientes = (data) => {
       <td>${c.nombre}</td>
       <td>${c.correo}</td>
       <td>${c.telefono}</td>
-      <td>${new Date(c.fecha_creacion).toLocaleDateString("es-CR", { timeZone: "America/Costa_Rica" })}</td>
+      <td>${new Date(c.fecha_creacion).toLocaleString("es-CR", {
+  timeZone: "America/Costa_Rica",
+  year: "numeric",
+  month: "2-digit",
+  day: "2-digit"
+})}</td>
+
       <td>${botonesAdmin}</td>
     `;
 
